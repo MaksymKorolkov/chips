@@ -84,7 +84,7 @@ void MainWindow::on_pushButtonCalculate_clicked() {
 
 void MainWindow::on_pushButtonSelectFile_clicked() {
     QFileDialog directory;
-    ui->lineEditFileDirection->setText(directory.getOpenFileName(this, "Оберіть файл", QDir::homePath(), tr("CSV (*.csv)")));
+    ui->lineEditFileDirection->setText(directory.getOpenFileName(this, "Оберіть файл", QDir::homePath(), tr("CSV (*.csv);;TXT (*.txt)")));
     direction = ui->lineEditFileDirection->text();
 }
 
