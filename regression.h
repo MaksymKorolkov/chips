@@ -6,7 +6,6 @@ class regression{
 public:
     regression();
     static double* getTetta();
-    static double getException();
 };
 
 #endif // REGRESSION_H

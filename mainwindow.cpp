@@ -13,10 +13,9 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
     creatTableWidgets();
 }
 
-double* tetta = regression::getTetta(); // Θ - матриця коефіцієнтів
-double error = regression::getException(); //середній регресійний залишок
-QString direction; //шлях до .csv файлу
-int selectedRow = -1; //обраний рядок (-1 якщо ще не обранний)
+double* tetta = regression::getTetta();
+QString direction;
+int selectedRow = -1;
 
 void MainWindow::creatTableWidgets() {
     ui->tableWidgetFactors->setColumnCount(4);
@@ -34,7 +33,6 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-/* Метод перевіряє формат вхідних данних */
 bool isNumber(QString s) {
     if (s.toStdString() == "") return false;
     for (auto x : s.toStdString()) {
@@ -90,7 +88,6 @@ void MainWindow::on_pushButtonCalculate_clicked() {
     resultWindow->show();
     connect(this, SIGNAL(sendData(QString)), resultWindow, SLOT(getData(QString)));
     emit sendData(QString::fromStdString(result));
-    //QMessageBox::information(this, "Результат", QString::fromStdString(result));
 }
 
 void MainWindow::on_pushButtonSelectFile_clicked() {
