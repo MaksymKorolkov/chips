@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "resultwindow.h"
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -10,6 +12,9 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+signals:
+    void sendData(QString data);
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -30,5 +35,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    ResultWindow *resultWindow;
 };
 #endif // MAINWINDOW_H

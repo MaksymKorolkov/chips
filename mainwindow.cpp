@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "resultwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QDir>
@@ -77,9 +78,14 @@ void MainWindow::on_pushButtonCalculate_clicked() {
         double ad = ui->tableWidgetFactors->model()->index(row, 0).data().toDouble();
         double price = ui->tableWidgetFactors->model()->index(row, 1).data().toDouble() - ui->tableWidgetFactors->model()->index(row, 2).data().toDouble();
         double index = ui->tableWidgetFactors->model()->index(row, 3).data().toDouble();
-        result += std::to_string(row + 1) + " - " + std::to_string(tetta[0] + tetta[1] * ad + tetta[2] * price + tetta[3] * index) + " млн. грн\n";
+        result += std::to_string(tetta[0] + tetta[1] * ad + tetta[2] * price + tetta[3] * index) + "\n";
     }
-    QMessageBox::information(this, "Результат", QString::fromStdString(result));
+    resultWindow = new ResultWindow(this);
+    resultWindow->setModal(true);
+    resultWindow->show();
+    connect(this, SIGNAL(sendData(QString)), resultWindow, SLOT(getData(QString)));
+    emit sendData(QString::fromStdString(result));
+    //QMessageBox::information(this, "Результат", QString::fromStdString(result));
 }
 
 void MainWindow::on_pushButtonSelectFile_clicked() {
@@ -91,29 +97,27 @@ void MainWindow::on_pushButtonSelectFile_clicked() {
 
 void MainWindow::on_pushButtonImport_clicked() {
     QString data;
-    QFile importedCSV(direction);
+    QFile file(direction);
     QStringList rowOfData;
     QStringList rowData;
     data.clear();
     rowOfData.clear();
     rowData.clear();
-    if (importedCSV.open(QFile::ReadOnly)) {
-        data = importedCSV.readAll();
-        QString k = "";
-        for (int i = 0; i < data.size()-1; ++i) {if (data[i] != '\"' && data[i] != ' ') k+= data[i];}
-        if (data[data.size()-1] != '\n') k+=data[data.size()-1];
-        data = k;
+    if (file.open(QFile::ReadOnly)) {
+        data = file.readAll();
+        data = data.left(data.size() - 1);
         rowOfData = data.split("\n");
-        importedCSV.close();
-    }
-    //qInfo("%s", data.toStdString().c_str());
-    for (int x = 0; x < rowOfData.size(); x++) {
-        rowData = rowOfData.at(x).split(",");
-        ui->tableWidgetFactors->insertRow(ui->tableWidgetFactors->rowCount());
-        for (int y = 0; y < rowData.size(); y++) {
-            if (y == rowData.size()-1) rowData[y].resize(rowData[y].size()-1);
-            ui->tableWidgetFactors->setItem(x, y, new QTableWidgetItem(rowData[y]));
+        file.close();
+        for (int i = 0; i < rowOfData.size(); i++) {
+            rowData = rowOfData.at(i).split(",");
+            ui->tableWidgetFactors->insertRow(ui->tableWidgetFactors->rowCount());
+            for (int j = 0; j < rowData.size(); j++) {
+                if (j == rowData.size()-1) rowData[j].resize(rowData[j].size()-1);
+                ui->tableWidgetFactors->setItem(i, j, new QTableWidgetItem(rowData[j]));
+            }
         }
+    } else {
+        QMessageBox::warning(this, "Помилка", "Оберіть файл!");
     }
 }
 
