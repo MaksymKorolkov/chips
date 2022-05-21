@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "regression.h"
 #include "resultwindow.h"
 #include "ui_mainwindow.h"
 
@@ -12,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
     creatTableWidgets();
 }
 
-double tetta[4] = {-1541.41, 9.00699, 8.63664, 16.3359}; // Θ - матриця коефіцієнтів
-double error = 123.2286699348031; //середній регресійний залишок
+double* tetta = regression::getTetta(); // Θ - матриця коефіцієнтів
+double error = regression::getException(); //середній регресійний залишок
 QString direction; //шлях до .csv файлу
 int selectedRow = -1; //обраний рядок (-1 якщо ще не обранний)
 
@@ -93,7 +94,6 @@ void MainWindow::on_pushButtonSelectFile_clicked() {
     ui->lineEditFileDirection->setText(directory.getOpenFileName(this, "Оберіть файл", QDir::homePath(), tr("CSV (*.csv);;TXT (*.txt)")));
     direction = ui->lineEditFileDirection->text();
 }
-
 
 void MainWindow::on_pushButtonImport_clicked() {
     QString data;

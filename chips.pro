@@ -12,11 +12,13 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matrix.cpp \
+    regression.cpp \
     resultwindow.cpp
 
 HEADERS += \
     mainwindow.h \
     matrix.h \
+    regression.h \
     resultwindow.h
 
 FORMS += \
