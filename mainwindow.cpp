@@ -71,6 +71,10 @@ void MainWindow::on_pushButtonDelete_clicked() {
 
 void MainWindow::on_tableWidgetFactors_clicked(const QModelIndex &index) {
     selectedRow = index.row();
+    ui->lineEditAd->setText(ui->tableWidgetFactors->model()->index(selectedRow, 0).data().toString());
+    ui->lineEditPrice->setText(ui->tableWidgetFactors->model()->index(selectedRow, 1).data().toString());
+    ui->lineEditPriceCompetitor->setText(ui->tableWidgetFactors->model()->index(selectedRow, 2).data().toString());
+    ui->lineEditIndex->setText(ui->tableWidgetFactors->model()->index(selectedRow, 3).data().toString());
 }
 
 void MainWindow::on_pushButtonCalculate_clicked() {
@@ -118,6 +122,26 @@ void MainWindow::on_pushButtonImport_clicked() {
         }
     } else {
         QMessageBox::warning(this, "Помилка", "Оберіть файл!");
+    }
+}
+
+
+void MainWindow::on_pushButtonEdit_clicked() {
+    if (selectedRow != -1) {
+        QString ad = ui->lineEditAd->text();
+        QString price = ui->lineEditPrice->text();
+        QString priceCompetitor = ui->lineEditPriceCompetitor->text();
+        QString index = ui->lineEditIndex->text();
+        if (isNumber(ad) && isNumber(price) && isNumber(priceCompetitor) && isNumber(index)) {
+            ui->tableWidgetFactors->item(selectedRow, 0)->setText(ad);
+            ui->tableWidgetFactors->item(selectedRow, 1)->setText(price);
+            ui->tableWidgetFactors->item(selectedRow, 2)->setText(priceCompetitor);
+            ui->tableWidgetFactors->item(selectedRow, 3)->setText(index);
+        } else {
+            QMessageBox::warning(this, "Помилка", "Невірний формат вхідних даних!");
+        }
+    } else {
+        QMessageBox::warning(this, "Помилка", "Ви не обрали рядок!");
     }
 }
 

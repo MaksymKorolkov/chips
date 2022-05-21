@@ -33,6 +33,8 @@ private slots:
 
     void on_pushButtonImport_clicked(); //кнопка імпортувати
 
+    void on_pushButtonEdit_clicked();
+
 private:
     Ui::MainWindow *ui;
     ResultWindow *resultWindow;

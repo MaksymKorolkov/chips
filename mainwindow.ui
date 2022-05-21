@@ -28,17 +28,51 @@
        <string>Фактори</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_18">
-       <item row="4" column="0">
-        <widget class="QPushButton" name="pushButtonAdd">
+       <item row="0" column="2">
+        <widget class="QLineEdit" name="lineEditAd"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelIndex">
          <property name="text">
-          <string>Додати</string>
+          <string>Індекс споживчих витрат (%)</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEditAd"/>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="lineEditPriceCompetitor"/>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelPriceCompetitor">
+         <property name="text">
+          <string>Середня ціна товару у конкурентів (грн)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelPrice">
+         <property name="text">
+          <string>Ціна товару (грн)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLineEdit" name="lineEditIndex"/>
+       </item>
+       <item row="5" column="1">
+        <widget class="QPushButton" name="pushButtonEdit">
+         <property name="text">
+          <string>Редагувати</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QPushButton" name="pushButtonDelete">
+         <property name="text">
+          <string>Видалити</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
         <widget class="QLineEdit" name="lineEditPrice"/>
        </item>
        <item row="0" column="0">
@@ -48,37 +82,10 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEditPriceCompetitor"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelPrice">
+       <item row="5" column="0">
+        <widget class="QPushButton" name="pushButtonAdd">
          <property name="text">
-          <string>Ціна товару (грн)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QPushButton" name="pushButtonDelete">
-         <property name="text">
-          <string>Видалити</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="labelIndex">
-         <property name="text">
-          <string>Індекс споживчих витрат (%)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEditIndex"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelPriceCompetitor">
-         <property name="text">
-          <string>Середня ціна товару у конкурентів (грн)</string>
+          <string>Додати</string>
          </property>
         </widget>
        </item>
