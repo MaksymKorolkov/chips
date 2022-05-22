@@ -37,7 +37,7 @@ double* regression::getTetta(){
     Matrix tetta = (X.transpose() * X).inversion() * X.transpose() * Y;
     double* res = new double[4];
     for (int i = 0; i < 4; i++){
-        //qInfo("%s", std::to_string(tetta.data[i][0]).c_str());
+        qInfo("%s", ("Коефіцієнт " + std::to_string(i) + " = " + std::to_string(tetta.data[i][0])).c_str());
         res[i] = tetta.data[i][0];
     }
     return res;
