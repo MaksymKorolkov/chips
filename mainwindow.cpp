@@ -79,7 +79,7 @@ void MainWindow::on_pushButtonCalculate_clicked() {
     std::string result;
     for (int row = 0; row < ui->tableWidgetFactors->rowCount(); row++){
         double ad = ui->tableWidgetFactors->model()->index(row, 0).data().toDouble();
-        double price = ui->tableWidgetFactors->model()->index(row, 1).data().toDouble() - ui->tableWidgetFactors->model()->index(row, 2).data().toDouble();
+        double price = ui->tableWidgetFactors->model()->index(row, 2).data().toDouble() - ui->tableWidgetFactors->model()->index(row, 1).data().toDouble();
         double index = ui->tableWidgetFactors->model()->index(row, 3).data().toDouble();
         result += std::to_string(tetta[0] + tetta[1] * ad + tetta[2] * price + tetta[3] * index) + "\n";
     }
